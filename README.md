@@ -44,7 +44,8 @@ python3 manage.py createsuperuser
 
 ### 5. Running the Application & Configuration
 
-Run the following commands in separate terminal (recommand in tmux):
+**If you are running it on a server for the first time, you need to access to the admin panel to configure the API keys,so run it with `0.0.0.0:8000` After that, change it to `127.0.0.1:8000` to avoid exposing the panel to the internet.**
+Run the following commands in separate terminals (recommended in tmux):
 
 ```bash
 # Start the Django server
@@ -62,10 +63,15 @@ You can configure the bot token and channel ID in the application settings throu
 Run the initial fetch to generate your database (It takes about 10 minutes):
 
 ```bash
-curl http://localhost:8000/watch/?platform=hackerone&debug=true
+curl http://localhost:8000/watch/?debug=true
 ```
 
 ### 7. Set Up a Cron Job for Regular Updates
+
+This application receives two query parameters. One is `debug`, which, if set to True, will execute the task without background tasks. However, if it is False, it will check the queue of background tasks, and if it’s free, it will execute the task. This prevents the function from running multiple times and avoids hitting API limits and other issues
+The second parameter is `logger`, which is set to False by default and is used to send changes to Telegram. Therefore, to send Telegram notifications, it must be set to True
+
+for the 
 
 To edit your crontab:
 
