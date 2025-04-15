@@ -76,6 +76,6 @@ crontab -e
 Add this to your crontab to check for new programs every 10 minutes:
 
 ```bash
-*/10 * * * * echo "$(date) - $(/usr/bin/curl -s "http://localhost:8000/watch/?platform=hackerone&debug=false&logger=true")" >> /var/log/curl_job.log 2>&1
+*/10 * * * * echo "$(date) - $(/usr/bin/curl -s "http://localhost:8000/watch/?debug=false&logger=true")" >> /var/log/curl_job.log 2>&1
 ```
 
